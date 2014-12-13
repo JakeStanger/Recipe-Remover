@@ -1,6 +1,23 @@
 Recipe-Remover
 ==============
 
-A small Minecraft mod, originally made by ShadwDrgn and updated by me to 1.7.10. I take no credit for the mod. Go visit the original creator's thread using the link below. The original mod was licensed under the creative commons 3.0 license here: http://creativecommons.org/licenses/by-nc-nd/3.0/
+A very small Minecraft mod which allows you to remove ALL recipes for ANY block/item from ANY mod.
 
-Forum thread: http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/1285901-1-6-4-forgeirc-v1-0-18-soul-shards-v2-0-15-and#reciperemover
+##Installation
+1. Install Minecraft Forge - http://files.minecraftforge.net/
+2. Go to your Minecraft base directory (%appdata%\.minecraft for vanilla)
+3. Go to the mods folder (if there isn't one, create one!)
+4. Place the latest version of this mod in there
+5. Run the game
+6. Close the game
+
+##Usage
+1. Go to your Minecraft base directory \ config
+2. Open RecipeRemover.cfg
+3. Place the textual ID of each block/item on a separate line (see below on how to find them)
+4. Save the file
+5. Open the game
+
+##Finding IDs
+I have implemented a basic command (/id <id> or /findid <id>) which allows you to enter the number ID (e.g. stone is 1, cobblestone is 4) and returns the textual ID (e.g. stone is minecraft:stone). You can also use the link below to find IDs from vanilla items/blocks:
+http://minecraft-ids.grahamedgecombe.com/ 
