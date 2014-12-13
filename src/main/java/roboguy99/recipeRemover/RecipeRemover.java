@@ -56,6 +56,7 @@ public class RecipeRemover
     public void serverLoad(FMLServerStartingEvent event)
     {
       event.registerServerCommand(new FindIDCommand());
+      event.registerServerCommand(new FindIDFromHandCommand());
     }
   
 

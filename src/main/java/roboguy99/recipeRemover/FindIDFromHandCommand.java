@@ -5,23 +5,25 @@ import java.util.List;
 
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 
-public class FindIDCommand implements ICommand
+public class FindIDFromHandCommand implements ICommand
 {
 	private List<String> aliases;
 	
-	public FindIDCommand()
+	public FindIDFromHandCommand()
 	{
 		this.aliases = new ArrayList<String>();
-		this.aliases.add("id");
-		this.aliases.add("findid");
+		this.aliases.add("handid");
+		this.aliases.add("holdingid");
 	}
 	
 	@Override
-	public int compareTo(Object arg0)
+	public int compareTo(Object o)
 	{
 		return 0;
 	}
@@ -29,13 +31,13 @@ public class FindIDCommand implements ICommand
 	@Override
 	public String getCommandName()
 	{
-		return "id";
+		return "handID";
 	}
 	
 	@Override
 	public String getCommandUsage(ICommandSender p_71518_1_)
 	{
-		return "/id <number ID>";
+		return "/handid";
 	}
 	
 	@Override
@@ -47,28 +49,29 @@ public class FindIDCommand implements ICommand
 	@Override
 	public void processCommand(ICommandSender sender, String[] input)
 	{
-		if(input.length != 0)
+		if(sender instanceof EntityPlayer)
 		{
-			try
+			EntityPlayer player = (EntityPlayer)sender;
+			ItemStack holding = player.getHeldItem();
+			
+			if(holding != null)
 			{
-				int id = Integer.parseInt(input[0]);
-				String name = Item.itemRegistry.getNameForObject(Item.itemRegistry.getObjectById(id));
+				String name = Item.itemRegistry.getNameForObject(Item.itemRegistry.getObjectById(Item.getIdFromItem(holding.getItem())));
 				sender.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Item textual ID: " + EnumChatFormatting.AQUA + name));
 			}
-			catch(NumberFormatException e)
+			else
 			{
-				sender.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "Please enter a valid number ID"));
-				return;
+				sender.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "You must be holding an item!"));
 			}
 		}
 		else
 		{
-			sender.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "Please enter a valid number ID"));
+			sender.addChatMessage(new ChatComponentText("You must be a player to use this command"));
 		}
 	}
 	
 	@Override
-	public boolean canCommandSenderUseCommand(ICommandSender sender)
+	public boolean canCommandSenderUseCommand(ICommandSender p_71519_1_)
 	{
 		return true;
 	}
