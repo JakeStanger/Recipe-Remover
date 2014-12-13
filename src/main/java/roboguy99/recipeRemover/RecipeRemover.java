@@ -14,7 +14,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
-@Mod(modid="RecipeRemover", name="Recipe Remover", version="1.0.0")
+@Mod(modid="RecipeRemover", name="Recipe Remover", version="1.1.0")
 public class RecipeRemover
 {
     Configuration config;
@@ -31,7 +31,7 @@ public class RecipeRemover
     	config.load();
     		Property recipeList = config.get(Configuration.CATEGORY_GENERAL, "disabledRecipes", DEFAULT_RECIPE_LIST);
     		String[] recipeListS = recipeList.getStringList();
-    		recipeList.comment = "Place the block ID on each separate line";
+    		recipeList.comment = "Place the block ID on each separate line. \n Use the /id command in-game to get the block/item IDs.";
 		config.save();
     
 		this.recipeList = recipeListS;
@@ -63,8 +63,10 @@ public class RecipeRemover
     private void removeRecipes(String toDelete)
     {    
     	ItemStack resultItem = new ItemStack((Item)Item.itemRegistry.getObject(toDelete));
-    	resultItem.stackSize = 1;
-    	resultItem.setItemDamage(0);
+    	if (resultItem != null)
+		{
+    		resultItem.stackSize = 1;
+		}
     	
 		List<IRecipe> recipes = CraftingManager.getInstance().getRecipeList();
        
@@ -76,7 +78,6 @@ public class RecipeRemover
             if(recipeResult != null) 
             {
             	recipeResult.stackSize = 1;
-                recipeResult.setItemDamage(0);
             }
             
             if (ItemStack.areItemStacksEqual(resultItem, recipeResult))
