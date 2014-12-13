@@ -1,4 +1,4 @@
-package roboguy99.foodTech;
+package roboguy99.recipeRemover;
 
 import java.util.List;
 
@@ -12,6 +12,7 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
 @Mod(modid="RecipeRemover", name="Recipe Remover", version="1.0.0")
 public class RecipeRemover
@@ -49,6 +50,12 @@ public class RecipeRemover
         }
     	
     	System.out.println("[RecipeRemover] Recipes removed succesfully");
+    }
+    
+    @EventHandler
+    public void serverLoad(FMLServerStartingEvent event)
+    {
+      event.registerServerCommand(new FindIDCommand());
     }
   
 
