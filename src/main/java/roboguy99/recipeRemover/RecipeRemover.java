@@ -8,6 +8,10 @@ import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -20,11 +24,12 @@ public class RecipeRemover
     Configuration config;
     private static final String[] DEFAULT_RECIPE_LIST = {"minecraft:stone", "modid:item"};
     private String[] recipeList;
+    public static final Logger logger = LogManager.getLogger("RecipeRemover");
   
     @EventHandler
     public void preInit(FMLPreInitializationEvent e)
     {
-    	System.out.println("[RecipeRemover] Loading config");
+    	logger.info("Loading config");
 	  
     	Configuration config = new Configuration(e.getSuggestedConfigurationFile());
     
@@ -36,7 +41,7 @@ public class RecipeRemover
     
 		this.recipeList = recipeListS;
 		
-		System.out.println("[RecipeRemover] Config loaded successfully");
+		logger.info("Config loaded successfully");
     }
   
     @EventHandler
@@ -49,7 +54,7 @@ public class RecipeRemover
         	  this.removeRecipes(this.recipeList[i]);
         }
     	
-    	System.out.println("[RecipeRemover] Recipes removed succesfully");
+    	logger.info("Recipes removed succesfully");
     }
     
     @EventHandler
