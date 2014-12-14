@@ -21,3 +21,5 @@ A very small Minecraft mod which allows you to remove ALL recipes for ANY block/
 ##Finding IDs
 I have implemented a basic command (/id <id> or /findid <id>) which allows you to enter the number ID (e.g. stone is 1, cobblestone is 4) and returns the textual ID (e.g. stone is minecraft:stone). You can also use the link below to find IDs from vanilla items/blocks:
 http://minecraft-ids.grahamedgecombe.com/ 
+
+If you are in-game and holding an item in your hand, you can use /handid or /holdingid to return the textualID.
