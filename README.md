@@ -7,7 +7,7 @@ A very small Minecraft mod which allows you to remove ALL recipes for ANY block/
 1. Install Minecraft Forge - http://files.minecraftforge.net/
 2. Go to your Minecraft base directory (%appdata%\.minecraft for vanilla)
 3. Go to the mods folder (if there isn't one, create one!)
-4. Place the latest version of this mod in there
+4. Place the latest version of this mod in there - https://github.com/Roboguy99/Recipe-Remover/releases
 5. Run the game
 6. Close the game
 
