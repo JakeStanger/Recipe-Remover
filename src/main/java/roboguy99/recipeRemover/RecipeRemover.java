@@ -18,7 +18,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
-@Mod(modid="RecipeRemover", name="Recipe Remover", version="1.1.0")
+@Mod(modid="RecipeRemover", name="Recipe Remover", version="1.1.0", acceptableRemoteVersions = "*")
 public class RecipeRemover
 {
     Configuration config;
@@ -79,7 +79,6 @@ public class RecipeRemover
 		for (int i = 0; i < recipes.size(); i++)
         {
             IRecipe tmpRecipe = recipes.get(i);
-            
             ItemStack recipeResult = tmpRecipe.getRecipeOutput();
             if(recipeResult != null) 
             {
