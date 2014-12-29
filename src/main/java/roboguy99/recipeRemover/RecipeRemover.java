@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Logger;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
@@ -45,7 +45,7 @@ public class RecipeRemover
     }
   
     @EventHandler
-    public void init(FMLInitializationEvent e)
+    public void postInit(FMLPostInitializationEvent e)
     {
     	System.out.println("[RecipeRemover] Removing recipes");
     	
@@ -69,10 +69,6 @@ public class RecipeRemover
     private void removeRecipes(String toDelete)
     {    
     	ItemStack resultItem = new ItemStack((Item)Item.itemRegistry.getObject(toDelete));
-    	if (resultItem != null)
-		{
-    		resultItem.stackSize = 1;
-		}
     	
 		List<IRecipe> recipes = CraftingManager.getInstance().getRecipeList();
        
@@ -80,10 +76,7 @@ public class RecipeRemover
         {
             IRecipe tmpRecipe = recipes.get(i);
             ItemStack recipeResult = tmpRecipe.getRecipeOutput();
-            if(recipeResult != null) 
-            {
-            	recipeResult.stackSize = 1;
-            }
+            if (resultItem != null && recipeResult != null) resultItem.stackSize = recipeResult.stackSize;
             
             if (ItemStack.areItemStacksEqual(resultItem, recipeResult))
             {
