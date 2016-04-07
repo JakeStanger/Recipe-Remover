@@ -1,5 +1,8 @@
 Recipe-Remover
 ==============
+#Note
+I do not, and do not plan to, maintain this mod. Feel free to do whatever you want with it - include it in your modpack, clone it and update it, modify it or whatever. Personally, I'd recommend using Minetweaker instead as it does everything this does and more, with greater mod support.
+
 
 A very small Minecraft mod which allows you to remove ALL recipes for ANY block/item from ANY mod.
 
